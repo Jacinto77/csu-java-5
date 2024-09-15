@@ -1,0 +1,47 @@
+// declare two ArrayLists to store daily temperatures and corresponding week days.
+START
+    DECLARE ArrayList<Double> temperatures with values [90.2, 93.2, 91.5, 90.3, 89.3, 85.9, 87.8]
+    DECLARE ArrayList<String> weekDays with values ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
+
+    // prompt user to input the day of the week.
+    PRINT "Enter the day of the week to see its average temperature:"
+
+    // read the user's input for the day of the week.
+    DECLARE Scanner userInput to take input from the user
+    STORE user input in variable userChoice
+
+    // initialize a variable to store the temperature.
+    DECLARE temp as Double and set it to null
+
+    // use a switch-case block to match the user's input with the corresponding day.
+    SWITCH (userChoice.toLowerCase())
+        CASE "sunday"
+            SET temp = temperatures.get(0)
+        CASE "monday"
+            SET temp = temperatures.get(1)
+        CASE "tuesday"
+            SET temp = temperatures.get(2)
+        CASE "wednesday"
+            SET temp = temperatures.get(3)
+        CASE "thursday"
+            SET temp = temperatures.get(4)
+        CASE "friday"
+            SET temp = temperatures.get(5)
+        CASE "saturday"
+            SET temp = temperatures.get(6)
+        CASE "week"
+            SET temp = null
+        DEFAULT
+            SET temp = null
+
+    // check if temp is null (which means either 'week' was chosen or an invalid day was entered)
+    IF temp is null THEN
+        // if 'week' was entered or an invalid day, print temperatures for all days of the week.
+        FOR i from 0 to size of temperatures list
+            PRINT weekDays.get(i) + " : " + temperatures.get(i)
+        END FOR
+    ELSE
+        // if a valid day was entered, print the temperature for the specific day.
+        PRINT "Temperature for " + userChoice.toUpperCase() + " : " + temp
+    END IF
+END
